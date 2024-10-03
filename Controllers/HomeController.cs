@@ -1,31 +1,33 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using MvcMovie.Models;
+using System.Security.Principal;
+using System.Text.Encodings.Web;
 
 namespace MvcMovie.Controllers;
 
-public class HomeController : Controller
+public class HelloWorldController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    // 
+    // GET: /HelloWorld/
+    public string Index()
     {
-        _logger = logger;
+        return "This is my default action...";
     }
+    
+    public string Welcome(string name, int ID = 1)
+{
+    return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
+}
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+    
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    // GET: /HelloWorld/Welcome/ 
+    // public string Welcome(int numTimes = 0, string name = "Anonymous")
+    // {
+    //     string outMessage = "";
+    //     for (int i = 0; i < numTimes; i++)
+    //     {
+    //         outMessage += $"Hello {name}, {i + 1} times!\n" ; 
+    //     }
+    //     return (outMessage == "") ? HtmlEncoder.Default.Encode("No parameters were passed") : HtmlEncoder.Default.Encode(outMessage);
+    // }
 }
