@@ -8,15 +8,19 @@ public class HelloWorldController : Controller
 {
     // 
     // GET: /HelloWorld/
-    public string Index()
+    public IActionResult Index() => View();
+
+    public IActionResult Welcome(string name, int numTimes = 1)
     {
-        return "This is my default action...";
+        ViewData["Message"] = "Hello " + name;
+        ViewData["NumTimes"] = numTimes;
+        return View();
     }
-    
-    public string Welcome(string name, int ID = 1)
-{
-    return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
-}
+
+//     public string Welcome(string name, int ID = 1)
+// {
+//     return HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}");
+// }
 
     
 
