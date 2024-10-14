@@ -17,6 +17,7 @@ else
         options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionMvcMovieContext")));
 }
 
+
 builder.Services.AddDbContext<MvcMovieContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
 
